@@ -1,5 +1,12 @@
 * {
     font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+body {
+    background-color: #200959;
+    padding: 0;
+    margin: 0;
 }
 
 #backgroundImg {
@@ -9,6 +16,14 @@
     width: 100vw;
     height: 100vh;
     z-index: -1;
+}
+
+#PCN {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    width: 200px;
+    z-index: 2;
 }
 
 .title {
@@ -78,4 +93,11 @@
 
 .partners img{
     width: 400px;
+}
+
+@media only screen and (max-width: 700px) 
+{
+    #PCN {
+        display: none;
+    }
 }
