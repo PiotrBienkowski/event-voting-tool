@@ -34,7 +34,7 @@ def create_user(name, email, UserClass, db):
             }
 
 def get_all_users(UserClass):
-    users = UserClass.query.filter_by(xd=3).all()
+    users = UserClass.query.all()
     tab = []
     for user in users:
         tmp = {

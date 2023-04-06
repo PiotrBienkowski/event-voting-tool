@@ -8,6 +8,9 @@ def create_battle(data, BattleClass, UserClass, db):
     if UserModel.authUser(email, password_hash, UserClass)["status"]:
         name1 = data.get('name1')
         name2 = data.get('name2')
+
+        if len(name1) == 0 or len(name2) == 0:
+            return jsonify({"status": False})
         userId = UserModel.getUserId(email, UserClass)
         return BattleModel.create_battle(name1, name2, userId, BattleClass, db)
     else:

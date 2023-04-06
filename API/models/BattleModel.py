@@ -38,6 +38,7 @@ def get_all_battles(userID, BattleClass):
             "name1": battle.name1,
             "name2": battle.name2,
             "uniqueID": battle.uniqueID,
+            "status": battle.status,
             "timestamp": lib.get_timestamp()
         }
         tab.append(tmp)

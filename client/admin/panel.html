@@ -5,19 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel - PCN</title>
+    <link href="style/panel.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-    <button onclick="logOutClient()">Wyloguj</button>
+    <div class="box">
+        <div class="controlBox">
+            <img src="images/PCN_logo.svg" alt="">
+            <p class="title">Panel Administratora</p>
+            <button>Bitwy</button><br />
+            <button>Uprawnieni do głosowania</button><br />
+            <button>Ustawienia</button><br />
+            <button onclick="logOutClient()">Wyloguj</button>
+        </div>
+        <div class="mainBox">
+            <h1>Dodaj bitwę</h1>
+            <div class="addBattle">
+                <input id="name1" type="text" placeholder="imie nazwisko 1">
+                <input id="name2" type="text" placeholder="imie nazwisko 2">
+                <br />
+                <button onclick="addBattle()">Utwórz Bitwę</button>
+            </div>
+            <h1>Bitwy</h1>
 
-    <input id="name1" type="text" placeholder="imie nazwisko 1">
-    <input id="name2" type="text" placeholder="imie nazwisko 2">
-    <button onclick="addBattle()">Utwórz Bitwę</button>
-    <h1>Bitwy</h1>
-    <div id="container"></div>
+            <div id="container"></div>
+
+        </div>
+    </div>
 </body>
 <script src="js/lib.js"></script>
 <script src="js/panel.js"></script>
