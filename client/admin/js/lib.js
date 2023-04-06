@@ -14,7 +14,7 @@ async function checkLogin() {
         return false;
     }
 
-    tab = await sendDataToAPI({ email: email, password_hash: password_hash}, "login");
+    tab = await sendDataToAPI({ email: email, password_hash: password_hash}, "/login");
     if (tab.status) {
         return true;
     }

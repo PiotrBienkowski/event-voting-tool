@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template
+from flask import jsonify
 import models.UserModel as UserModel
 
 def create_user(name, email, UserClass, db):

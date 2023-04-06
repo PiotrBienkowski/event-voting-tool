@@ -34,7 +34,7 @@ def create_user(name, email, UserClass, db):
             }
 
 def get_all_users(UserClass):
-    users = UserClass.query.all()
+    users = UserClass.query.filter_by(xd=3).all()
     tab = []
     for user in users:
         tmp = {
@@ -50,8 +50,6 @@ def get_all_users(UserClass):
 def authUser(email, password_hash, UserClass):
     user = UserClass.query.filter_by(email=email).first()
     if user:
-        print(user.password_hash)
-        print(password_hash)
         if user.password_hash == password_hash:
             return {
                 "status": True,
@@ -62,3 +60,11 @@ def authUser(email, password_hash, UserClass):
             return {"status": False, "timestamp": lib.get_timestamp()}
     else:
         return {"status": False, "timestamp": lib.get_timestamp()}
+    
+def getUserId(email, UserClass):
+    user = UserClass.query.filter_by(email=email).first()
+    if user:
+        return user.id
+    else:
+        return -1
+

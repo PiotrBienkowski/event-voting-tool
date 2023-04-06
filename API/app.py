@@ -3,14 +3,13 @@
 # flask run
 
 import lib
-
 from flask import Flask, jsonify, request, render_template, make_response
-from flask.helpers import send_file
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource
 
 import controllers.UserController as UserController
+import controllers.BattleController as BattleController
 
 app = Flask(__name__)
 CORS(app)
@@ -29,6 +28,17 @@ class User(db.Model):
     email = db.Column(db.String(100), nullable=False)
     password_hash = db.Column(db.String(100), nullable=False)
 
+class Battle(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    uniqueID = db.Column(db.String(100), nullable=False)
+    userID = db.Column(db.Integer, nullable=False)
+    name1 = db.Column(db.String(100), nullable=False)
+    name2 = db.Column(db.String(100), nullable=False)
+    votes1 = db.Column(db.Integer, nullable=False)
+    votes2 = db.Column(db.Integer, nullable=False)
+    status = db.Column(db.Boolean, nullable=False)
+
+# ----- DEBUG -----
 @app.route('/', methods=['GET'])
 def main():
     return "Status: ok"
@@ -41,13 +51,23 @@ def create_db():
     else:
         return lib.error_production_mode()
     
+@app.route('/hash', methods=['GET'])
+def getHash():
+    # TODO: Change it because sending the password to the API is not secure
+    text = request.args.get("text")
+    return {"hash": lib.password_hash(text)}
+
+# ----- USER -----
 @app.route('/create-user')
-def create_client():
+def create_user():
     # TODO: create form
     if DEBUG:
         name = "test"
         email = "3@3.3"
         # password: 40b8d16effce4e07f559
+
+        email = "4@4.4"
+        # password: 5d3f88b0ac833e53b351
         return UserController.create_user(name, email, User, db)
     else:
         return lib.error_production_mode()
@@ -63,9 +83,14 @@ def all_users():
         return UserController.all_users(User)
     else:
         return lib.error_production_mode()
-    
-@app.route('/hash', methods=['GET'])
-def getHash():
-    # TODO: Change it because sending the password to the API is not secure
-    text = request.args.get("text")
-    return {"hash": lib.password_hash(text)}
+
+# ----- BATTLE -----
+@app.route('/create-battle', methods=['POST'])
+def create_battle():
+    data = request.get_json()
+    return BattleController.create_battle(data, Battle, User, db)
+
+@app.route('/all-battles', methods=['POST'])
+def get_all_battles():
+    data = request.get_json()
+    return BattleController.get_all_battles(data, Battle, User)
