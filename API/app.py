@@ -94,3 +94,9 @@ def create_battle():
 def get_all_battles():
     data = request.get_json()
     return BattleController.get_all_battles(data, Battle, User)
+
+@app.route('/toggle-battle', methods=['POST'])
+def toggle_battle():
+    data = request.get_json()
+    return BattleController.toggle_battle_status(data, Battle, User, db);
+    

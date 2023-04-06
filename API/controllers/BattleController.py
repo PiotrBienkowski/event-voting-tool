@@ -16,6 +16,16 @@ def create_battle(data, BattleClass, UserClass, db):
     else:
         return jsonify({"status": False}) 
     
+def toggle_battle_status(data, BattleClass, UserClass, db):
+    email = data.get('email')
+    password_hash = data.get('password_hash')
+    if UserModel.authUser(email, password_hash, UserClass)["status"]:
+        uniqueID = data.get('uniqueID')
+        return BattleModel.toggle_battle_status(uniqueID, BattleClass, db)
+    else:
+        return jsonify({"status": False}) 
+
+
 def get_all_battles(data, BattleClass, UserClass):
     email = data.get('email')
     password_hash = data.get('password_hash')
@@ -27,3 +37,4 @@ def get_all_battles(data, BattleClass, UserClass):
             })
     else:
         return jsonify({"status": False})
+

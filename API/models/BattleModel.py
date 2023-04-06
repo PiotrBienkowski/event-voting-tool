@@ -29,6 +29,19 @@ def create_battle(name1, name2, userId, BattleClass, db):
             "error":  str(e)
         }
     
+def toggle_battle_status(uniqueID, BattleClass, db):
+    battle = BattleClass.query.filter_by(uniqueID=uniqueID).first()
+    if battle:
+        battle.status = not battle.status
+        db.session.commit()
+        return {
+            "status": True,
+        }
+    else:
+        return {
+            "status": False,
+        }
+
 def get_all_battles(userID, BattleClass):
     battles = BattleClass.query.filter_by(userID=userID).all()
     tab = []
