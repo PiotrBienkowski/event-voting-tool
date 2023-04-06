@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCN - Panel logowania</title>
+    <title>Logowanie - PCN</title>
     <link href="style/login.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,12 +13,15 @@
 <body>
     <img id="backgroundImg" src="images/background.png">
     <div class="box">
-        <form action="">
-            <img src="images/EV_logo_white.svg" alt="">
-            <input class="inputText" name="email" type="email" placeholder="email">
-            <input class="inputText" name="password" type="password" placeholder="hasło">
-            <input class="inputSubmit" type="submit" value="Zaloguj">
-        </form>
+        <img src="images/EV_logo_white.svg" alt="">
+        <p id="error">
+            Błędny email lub hasło
+        </p>
+        <input id="email" class="inputText" name="email" type="email" placeholder="email">
+        <input id="password" class="inputText" name="password" type="password" placeholder="hasło">
+        <button class="inputSubmit" onClick="login_user_form()">Zaloguj</button>
     </div>
 </body>
+<script src="js/lib.js"></script>
+<script src="js/login.js"></script>
 </html>

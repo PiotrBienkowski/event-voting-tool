@@ -46,3 +46,19 @@ def get_all_users(UserClass):
         }
         tab.append(tmp)
     return tab
+
+def authUser(email, password_hash, UserClass):
+    user = UserClass.query.filter_by(email=email).first()
+    if user:
+        print(user.password_hash)
+        print(password_hash)
+        if user.password_hash == password_hash:
+            return {
+                "status": True,
+                "timestamp": lib.get_timestamp()
+            }
+            
+        else:
+            return {"status": False, "timestamp": lib.get_timestamp()}
+    else:
+        return {"status": False, "timestamp": lib.get_timestamp()}

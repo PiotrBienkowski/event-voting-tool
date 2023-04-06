@@ -10,7 +10,7 @@ def generate_password():
 def password_hash(password):
     ret = ""
     password = str(password)
-    ret = hashlib.sha256(password.encode()).hexdigest()
+    ret = hashlib.sha512(password.encode()).hexdigest()
     return ret
 
 def create_database(db):

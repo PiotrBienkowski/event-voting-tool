@@ -21,6 +21,8 @@ DEBUG = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 
+app.run(host='10.166.48.146', port=5000)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -44,12 +46,16 @@ def create_client():
     # TODO: create form
     if DEBUG:
         name = "test"
-        email = "2@2.2"
-        # password: d2e82ad6b49d894288b8
+        email = "3@3.3"
+        # password: 40b8d16effce4e07f559
         return UserController.create_user(name, email, User, db)
     else:
         return lib.error_production_mode()
 
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    return UserController.login(data, User)
 
 @app.route('/all-users')
 def all_users():
@@ -57,3 +63,9 @@ def all_users():
         return UserController.all_users(User)
     else:
         return lib.error_production_mode()
+    
+@app.route('/hash', methods=['GET'])
+def getHash():
+    # TODO: Change it because sending the password to the API is not secure
+    text = request.args.get("text")
+    return {"hash": lib.password_hash(text)}
