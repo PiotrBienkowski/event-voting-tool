@@ -38,3 +38,18 @@ def get_all_battles(data, BattleClass, UserClass):
     else:
         return jsonify({"status": False})
 
+def battle_info(data, BattleClass, UserClass, db):
+    email = data.get('email')
+    password_hash = data.get('password_hash')
+    uniqueID = data.get('uniqueID')
+    if UserModel.authUser(email, password_hash, UserClass)["status"] and len(uniqueID) > 0:
+        userID = UserModel.getUserId(email, UserClass)
+        if BattleModel.check_battle_exist(uniqueID, userID, BattleClass):
+            return jsonify({
+                "status": True,
+                "battle": BattleModel.get_battle(uniqueID, BattleClass)
+            })
+        else:
+            return jsonify({"status": False})
+    else:
+        return jsonify({"status": False})

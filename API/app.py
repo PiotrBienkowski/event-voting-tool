@@ -31,6 +31,7 @@ class User(db.Model):
 class Battle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     uniqueID = db.Column(db.String(100), nullable=False)
+    code = db.Column(db.String(100), nullable=False)
     userID = db.Column(db.Integer, nullable=False)
     name1 = db.Column(db.String(100), nullable=False)
     name2 = db.Column(db.String(100), nullable=False)
@@ -63,11 +64,8 @@ def create_user():
     # TODO: create form
     if DEBUG:
         name = "test"
-        email = "3@3.3"
-        # password: 40b8d16effce4e07f559
-
-        email = "4@4.4"
-        # password: 5d3f88b0ac833e53b351
+        email = "2@2.2"
+        # password: 401618871341147d1cb2
         return UserController.create_user(name, email, User, db)
     else:
         return lib.error_production_mode()
@@ -99,4 +97,8 @@ def get_all_battles():
 def toggle_battle():
     data = request.get_json()
     return BattleController.toggle_battle_status(data, Battle, User, db);
-    
+
+@app.route('/battle-info', methods=['POST'])
+def battle_info():
+    data = request.get_json()
+    return BattleController.battle_info(data, Battle, User, db)

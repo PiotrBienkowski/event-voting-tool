@@ -2,12 +2,17 @@ import lib
 
 def create_battle(name1, name2, userId, BattleClass, db):
     uniqueID = lib.generate_password()
+    code = lib.generate_code()
 
+    if BattleClass.query.filter_by(code=code).first():
+        code = lib.generate_code()
+        
     new_battle = BattleClass(
         uniqueID = uniqueID,
         userID = userId,
         name1 = name1,
         name2 = name2,
+        code = code,
         votes1 = 0,
         votes2 = 0,
         status = False
@@ -51,8 +56,31 @@ def get_all_battles(userID, BattleClass):
             "name1": battle.name1,
             "name2": battle.name2,
             "uniqueID": battle.uniqueID,
+            "code": battle.code,
             "status": battle.status,
             "timestamp": lib.get_timestamp()
         }
         tab.append(tmp)
     return tab
+
+def get_battle(uniqueID, BattleClass):
+    battle = BattleClass.query.filter_by(uniqueID=uniqueID).first()
+    tmp = {
+        "id": battle.id,
+        "name1": battle.name1,
+        "name2": battle.name2,
+        "votes1": battle.votes1,
+        "votes2": battle.votes2,
+        "uniqueID": battle.uniqueID,
+        "code": battle.code,
+        "status": battle.status,
+        "timestamp": lib.get_timestamp()
+    }
+    return tmp
+
+def check_battle_exist(uniqueID, userID, BattleClass):
+    battle = BattleClass.query.filter_by(uniqueID=uniqueID, userID=userID).first()
+    if battle is not None:
+        return True
+    else:
+        return False

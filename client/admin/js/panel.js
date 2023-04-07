@@ -49,7 +49,7 @@ async function getBattles() {
         const div = document.createElement("div");
         div.setAttribute("id", tmp["tab"][i]["uniqueID"]);
         container.appendChild(div);
-        document.getElementById(tmp["tab"][i]["uniqueID"]).innerHTML = '<div id="b_' + tmp["tab"][i]["uniqueID"] + '" class="battle"><div class="topLine"><p><b>' + tmp["tab"][i]["name1"] + '</b> vs <b>' + tmp["tab"][i]["name2"] + '</b></p><img id="a_' + tmp["tab"][i]["uniqueID"] + '" onclick="showDetails(' + "'" + tmp["tab"][i]["uniqueID"] + "')" + '" src="images/arrow.svg" alt=""></div><div id="d_' + tmp["tab"][i]["uniqueID"] + '" class="details" style="display: none;"><p>Status: <span id="s_' + tmp["tab"][i]["uniqueID"] + '">Zablokowane</span></p><button id="sb_' + tmp["tab"][i]["uniqueID"] + '" onclick="toggleStatus(' + "'"  + tmp["tab"][i]["uniqueID"] + "'" + ')">Odblokuj</button> <button>Pokaz Bitwę</button></div></div>';
+        document.getElementById(tmp["tab"][i]["uniqueID"]).innerHTML = '<div id="b_' + tmp["tab"][i]["uniqueID"] + '" class="battle"><div class="topLine"><p><b>' + tmp["tab"][i]["name1"] + '</b> vs <b>' + tmp["tab"][i]["name2"] + '</b> - ' + tmp["tab"][i]["code"] + '</p><img id="a_' + tmp["tab"][i]["uniqueID"] + '" onclick="showDetails(' + "'" + tmp["tab"][i]["uniqueID"] + "')" + '" src="images/arrow.svg" alt=""></div><div id="d_' + tmp["tab"][i]["uniqueID"] + '" class="details" style="display: none;"><p>Status: <span id="s_' + tmp["tab"][i]["uniqueID"] + '">Zablokowane</span></p><button id="sb_' + tmp["tab"][i]["uniqueID"] + '" onclick="toggleStatus(' + "'"  + tmp["tab"][i]["uniqueID"] + "'" + ')">Odblokuj</button> <button onclick="openBattle(' + "'" + tmp["tab"][i]["uniqueID"] + "'" + ')">Pokaz Bitwę</button></div></div>';
     }
 
     for (let i = 0; i < tmp["tab"].length; i++) {
@@ -66,5 +66,10 @@ async function toggleStatus(code) {
     email = getCookieValue("email")
     password_hash = getCookieValue("password_hash")
     tmp = await sendDataToAPI({ uniqueID: code, email: email, password_hash: password_hash, password_hash: password_hash}, "/toggle-battle")
-    getBattles();
+    await getBattles();
+    showDetails(code);
+}
+
+function openBattle(code) {
+    window.open('battle.html?uid=' + code, '_blank');
 }
