@@ -36,3 +36,10 @@ def get_all_pollers(userID, PollerClass):
         }
         tab.append(tmp)
     return tab
+
+def auth_code(code, PollerClass):
+    poller = PollerClass.query.filter_by(code=code).first()
+    if poller:
+        return True
+    else:
+        return False

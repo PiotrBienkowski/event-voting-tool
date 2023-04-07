@@ -8,8 +8,11 @@
 </head>
 <body>
     <h1>Logowanie</h1>
+    <div id="error" style="display: none;">
+        Błędny kod.
+    </div>
     <input id="code" type="text">
-    <button>Zaloguj</button>
+    <button onclick="login_viewer_form()">Zaloguj</button>
 </body>
 <script src="js/lib.js"></script>
 <script src="js/login.js"></script>

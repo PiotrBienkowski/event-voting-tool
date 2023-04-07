@@ -120,3 +120,8 @@ def create_pollers():
 def method_name():
     data = request.get_json()
     return PollerController.get_all_pollers(data, Poller, User)
+
+@app.route('/auth-code', methods=["POST"])
+def auth_code():
+    data = request.get_json()
+    return PollerController.auth_code(data, Poller, db)

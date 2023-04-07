@@ -1,12 +1,12 @@
+auth();
+getBattles();
+
 async function auth() {
     if(!(await checkLogin())) {
         logOut();
         window.location.href = 'login.html';
     }
 }
-
-auth();
-getBattles();
 
 function logOutClient() {
     logOut();

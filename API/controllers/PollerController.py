@@ -24,3 +24,13 @@ def get_all_pollers(data, PollerClass, UserClass):
             })
     else:
         return jsonify({"status": False})
+    
+def auth_code(data, PollerClass, db):
+    code = data.get('code')
+    if len(code) == 0:
+        return jsonify({"status": False})
+    
+    if PollerModel.auth_code(code, PollerClass):
+        return jsonify({"status": True})
+    else:
+        return jsonify({"status": False})

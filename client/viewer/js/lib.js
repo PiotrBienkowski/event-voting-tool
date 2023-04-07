@@ -6,6 +6,17 @@ function logOut() {
     return true;
 }
 
+async function checkLogin() {
+    code = getCookieValue("viewer_code")
+    if (code == -1) {
+        return false
+    }
+
+    tmp = await sendDataToAPI({code: code}, "/auth-code")
+
+    return tmp["status"]
+}
+
 function setCookie(cookieName, cookieValue) {
     const now = new Date();
     const expirationDate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
