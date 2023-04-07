@@ -1,34 +1,9 @@
 API_link = "http://10.166.48.146:8000"
 
+
 function logOut() {
-    deleteCookie("password_hash");
-    deleteCookie("email");
+    deleteCookie("viewer_code");
     return true;
-}
-
-async function checkLogin() {
-    password_hash = getCookieValue("password_hash");
-    email = getCookieValue("email");
-
-    if (password_hash == -1 || email == -1) {
-        return false;
-    }
-
-    tab = await sendDataToAPI({ email: email, password_hash: password_hash}, "/login");
-    if (tab.status) {
-        return true;
-    }
-    return false;
-}
-
-function bufferToHexString(buffer) {
-    const byteArray = new Uint8Array(buffer);
-    const hexCodes = [...byteArray].map(value => {
-        const hexCode = value.toString(16);
-        const paddedHexCode = hexCode.padStart(2, '0');
-        return paddedHexCode;
-    });
-    return hexCodes.join('');
 }
 
 function setCookie(cookieName, cookieValue) {

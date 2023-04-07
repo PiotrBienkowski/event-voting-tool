@@ -10,6 +10,7 @@ from flask_restful import Api, Resource
 
 import controllers.UserController as UserController
 import controllers.BattleController as BattleController
+import controllers.PollerController as PollerController
 
 app = Flask(__name__)
 CORS(app)
@@ -38,6 +39,12 @@ class Battle(db.Model):
     votes1 = db.Column(db.Integer, nullable=False)
     votes2 = db.Column(db.Integer, nullable=False)
     status = db.Column(db.Boolean, nullable=False)
+
+class Poller(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    cnt = db.Column(db.Integer, nullable=False)
+    code = db.Column(db.String(100), nullable=False)
+    userID = db.Column(db.Integer, nullable=False)
 
 # ----- DEBUG -----
 @app.route('/', methods=['GET'])
@@ -102,3 +109,14 @@ def toggle_battle():
 def battle_info():
     data = request.get_json()
     return BattleController.battle_info(data, Battle, User, db)
+
+# ----- POLLER -----
+@app.route('/create-pollers', methods=["POST"])
+def create_pollers():
+    data = request.get_json()
+    return PollerController.create_pollers(data, Poller, User, db)
+
+@app.route('/all-pollers', methods=["POST"])
+def method_name():
+    data = request.get_json()
+    return PollerController.get_all_pollers(data, Poller, User)
