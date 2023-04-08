@@ -1,6 +1,5 @@
 API_link = "http://127.0.0.1:8000"
 
-
 function logOut() {
     deleteCookie("viewer_code");
     return true;

@@ -25,7 +25,6 @@ async function update() {
     if (cnt > 1800) {
         clearInterval(intervalId);
     }
-    console.log("XDD")
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const uid = urlParams.get('uid');

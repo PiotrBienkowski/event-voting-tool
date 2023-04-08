@@ -46,5 +46,11 @@ async function vote(player) {
 
         document.getElementById("message").style.display = "block";
         document.getElementById("message").innerHTML = tmp["message"];
+
+        document.getElementById("voteBox").style.display = "none";
+
+        setTimeout(function() {
+            window.location.replace("index.html");
+        }, 4000);
     }
 }

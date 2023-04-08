@@ -105,10 +105,12 @@ button {
     box-sizing: border-box;
     border: 1px solid white;
     width: 30%;
+    min-width: 150px;
 }
 
 .mainBox .addBattle button {
     width: 20%;
+    min-width: 120px;
     background-color: #200959;
     border-radius: 8px;
     padding: 8px;
@@ -123,4 +125,37 @@ button {
 
 .mainBox .addBattle button:active {
     transform: scale(0.95);
+}
+
+.menuIcon {
+    display: none;
+}
+
+@media only screen and (max-width: 650px) 
+{
+    .controlBox {
+        display: none;
+        width: 100%;
+        z-index: 100;
+        background-color: #200959;
+    }
+
+    .mainBox {
+        margin-left: 0px;
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .menuIcon {
+        z-index: 120;
+        display: block;
+        height: 20px;
+        position: fixed;
+        right: 20px;
+        top: 20px;
+    }
+
+    .menuIcon:active {
+        transform: scale(0.97);
+    }
 }

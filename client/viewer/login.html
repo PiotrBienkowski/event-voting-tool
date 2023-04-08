@@ -5,14 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PCN - Logowanie</title>
+    <link href="style/panel.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Logowanie</h1>
-    <div id="error" style="display: none;">
-        Błędny kod.
+    <img id="backgroundImg" src="images/background.png">
+    <div class="box">
+        <img src="images/PCN_logo.svg" alt="">
+        <h1>Logowanie</h1>
+        <div id="error" style="display: none;">
+            Błędny kod.
+        </div>
+        <input id="code" type="text" placeholder="twój kod"> <br />
+        <button onclick="login_viewer_form()">Zaloguj</button>
     </div>
-    <input id="code" type="text">
-    <button onclick="login_viewer_form()">Zaloguj</button>
 </body>
 <script src="js/lib.js"></script>
 <script src="js/login.js"></script>

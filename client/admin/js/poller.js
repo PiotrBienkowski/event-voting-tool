@@ -1,4 +1,10 @@
 getPollers()
+cnt = 0
+
+function logOutClient() {
+    logOut();
+    window.location.href = 'login.html';
+}
 
 async function addPollers() {
     document.getElementById("error").innerHTML = ""
@@ -7,10 +13,8 @@ async function addPollers() {
     email = getCookieValue("email")
     password_hash = getCookieValue("password_hash")
 
-
     tmp = await sendDataToAPI({email: email, password_hash: password_hash, codes: codes}, "/create-pollers")
 
-    console.log(tmp)
     document.getElementById("codes").value = ""
 
     if (tmp["error"].length > 0) {
@@ -42,4 +46,13 @@ async function getPollers() {
         p.textContent = tmp["tab"][i]["code"] + " - " + tmp["tab"][i]["cnt"];
         div.appendChild(p);
     }
+}
+
+function toggleMenu() {
+    if (cnt == 0 || document.getElementById("controlBox").style.display == "none") {
+        document.getElementById("controlBox").style.display = "block"
+    } else {
+        document.getElementById("controlBox").style.display = "none"
+    }
+    cnt += 1
 }

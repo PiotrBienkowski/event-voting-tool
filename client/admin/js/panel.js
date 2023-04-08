@@ -1,6 +1,8 @@
 auth();
 getBattles();
 
+cnt = 0
+
 async function auth() {
     if(!(await checkLogin())) {
         logOut();
@@ -72,4 +74,13 @@ async function toggleStatus(code) {
 
 function openBattle(code) {
     window.open('battle.html?uid=' + code, '_blank');
+}
+
+function toggleMenu() {
+    if (document.getElementById("controlBox").style.display == "none" || cnt == 0) {
+        document.getElementById("controlBox").style.display = "block"
+    } else {
+        document.getElementById("controlBox").style.display = "none"
+    }
+    cnt += 1
 }

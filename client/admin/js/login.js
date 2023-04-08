@@ -1,4 +1,3 @@
-
 auth();
 
 async function auth() {
@@ -16,14 +15,11 @@ async function login_user_form() {
     tab = await prepare_login_data(email, password);
 
     if (tab.status == true) {
-        console.log("Zalogowano");
-
         password_hash = await APIHash(password);
         password = ""
         
         setCookie("password_hash", password_hash);
         setCookie("email", email);
-        console.log("git")
         window.location.href = 'panel.html';
     } else {
         document.getElementById("error").style.display = "block";

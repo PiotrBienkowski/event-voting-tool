@@ -95,9 +95,27 @@ body {
     width: 400px;
 }
 
+.error {
+    display: none;
+}
+
 @media only screen and (max-width: 700px) 
 {
     #PCN {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) 
+{
+    .error {
+        display: block;
+        text-align: center;
+        margin-top: 47vh;
+        width: 90%;
+    }
+
+    .battleView {
         display: none;
     }
 }

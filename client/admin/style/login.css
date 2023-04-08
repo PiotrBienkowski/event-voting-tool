@@ -66,3 +66,12 @@ body {
     border-radius: 7px;
     margin-bottom: 30px;
 }
+
+@media only screen and (max-width: 460px) 
+{
+    .box {
+        width: 90%;
+        margin: auto;
+        margin-top: calc(50vh - 150px);
+    }
+}
