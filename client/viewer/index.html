@@ -9,8 +9,10 @@
 <body>
     <h1>Jesteś zalogowany jako: <span id="codeTitle"></span></h1>
     <h1>Podaj kod bitwy</h1>
-    <input type="text">
-    <button>Zagłosuj</button>
+    <input id="battleCode" type="text"> 
+    <br />
+    <div id="error" style="display: none;"></div>
+    <button onclick="loginBattle()">Start</button>
 
     <button onclick="logOutClient()">Wyloguj</button>
 </body>

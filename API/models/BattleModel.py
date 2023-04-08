@@ -65,22 +65,55 @@ def get_all_battles(userID, BattleClass):
 
 def get_battle(uniqueID, BattleClass):
     battle = BattleClass.query.filter_by(uniqueID=uniqueID).first()
-    tmp = {
-        "id": battle.id,
-        "name1": battle.name1,
-        "name2": battle.name2,
-        "votes1": battle.votes1,
-        "votes2": battle.votes2,
-        "uniqueID": battle.uniqueID,
-        "code": battle.code,
-        "status": battle.status,
-        "timestamp": lib.get_timestamp()
-    }
-    return tmp
+    if battle:
+        tmp = {
+            "id": battle.id,
+            "name1": battle.name1,
+            "name2": battle.name2,
+            "votes1": battle.votes1,
+            "votes2": battle.votes2,
+            "uniqueID": battle.uniqueID,
+            "code": battle.code,
+            "status": battle.status,
+            "timestamp": lib.get_timestamp()
+        }
+        return tmp
+    else:
+        return False
+
+def get_battle_code(code, BattleClass):
+    battle = BattleClass.query.filter_by(code=code).first()
+    if battle:
+        tmp = {
+            "id": battle.id,
+            "name1": battle.name1,
+            "name2": battle.name2,
+            "votes1": battle.votes1,
+            "votes2": battle.votes2,
+            "uniqueID": battle.uniqueID,
+            "code": battle.code,
+            "status": battle.status,
+            "timestamp": lib.get_timestamp()
+        }
+        return tmp
+    else:
+        return False
 
 def check_battle_exist(uniqueID, userID, BattleClass):
     battle = BattleClass.query.filter_by(uniqueID=uniqueID, userID=userID).first()
     if battle is not None:
+        return True
+    else:
+        return False
+
+def increase(player, code, BattleClass, db):
+    battle = BattleClass.query.filter_by(code=code).first()
+    if battle:
+        if player == 1:
+            battle.votes1 += 1
+        else:
+            battle.votes2 += 1
+        db.session.commit()
         return True
     else:
         return False

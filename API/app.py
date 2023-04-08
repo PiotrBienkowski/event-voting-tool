@@ -46,6 +46,11 @@ class Poller(db.Model):
     code = db.Column(db.String(100), nullable=False)
     userID = db.Column(db.Integer, nullable=False)
 
+class Connection(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    pollerCode = db.Column(db.String(100), nullable=False)
+    battleCode = db.Column(db.String(100), nullable=False)
+
 # ----- DEBUG -----
 @app.route('/', methods=['GET'])
 def main():
@@ -109,6 +114,16 @@ def toggle_battle():
 def battle_info():
     data = request.get_json()
     return BattleController.battle_info(data, Battle, User, db)
+
+@app.route('/battle-login', methods=["POST"])
+def battle_login():
+    data = request.get_json()
+    return BattleController.battle_login(data, Battle, Connection, Poller)
+
+@app.route('/battle-vote', methods=["POST"])
+def battle_vote():
+    data = request.get_json()
+    return BattleController.battle_vote(data, Battle, Connection, Poller, db)
 
 # ----- POLLER -----
 @app.route('/create-pollers', methods=["POST"])

@@ -1,4 +1,4 @@
-API_link = "http://10.166.48.146:8000"
+API_link = "http://127.0.0.1:8000"
 
 
 function logOut() {
