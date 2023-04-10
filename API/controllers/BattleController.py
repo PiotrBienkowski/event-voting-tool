@@ -122,6 +122,7 @@ def battle_vote(data, BattleClass, ConnectionClass, PollerClass, db):
             ret = BattleModel.increase(player, battle_code, BattleClass, db)
             if ret:
                 if ConnectionModel.create_connection(poller_code, battle_code, ConnectionClass, db):
+                    PollerModel.increase(poller_code, PollerClass, db)
                     return jsonify({
                         "status": True,
                         "message": tmp[1],

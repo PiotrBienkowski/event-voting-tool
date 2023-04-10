@@ -1,4 +1,4 @@
-# Voting Tool
+# Event Voting Tool
 A tool that allows you to vote between two people. 
 
 ## Authorization

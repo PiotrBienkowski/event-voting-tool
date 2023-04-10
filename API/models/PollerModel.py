@@ -43,3 +43,12 @@ def auth_code(code, PollerClass):
         return True
     else:
         return False
+    
+def increase(code, PollerClass, db):
+    poller = PollerClass.query.filter_by(code=code).first()
+    if poller:
+        poller.cnt += 1
+        db.session.commit()
+        return True
+    else:
+        return False
