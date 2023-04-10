@@ -11,5 +11,5 @@ The voting results are displayed on a projector on the main stage.
 
 ## Mobile view
 Each person in the audience can vote only once.
-<img width="40%" alt="image" src="https://user-images.githubusercontent.com/120416913/230744152-40962184-d3a2-41ea-be0f-acbeb577daa7.png">
-<img width="40%" alt="image" src="https://user-images.githubusercontent.com/120416913/230744025-d24499be-c70b-4a07-8332-403ba6168401.png">  
+
+<img width="40%" alt="image" src="https://user-images.githubusercontent.com/120416913/230744152-40962184-d3a2-41ea-be0f-acbeb577daa7.png"> <img width="40%" alt="image" src="https://user-images.githubusercontent.com/120416913/230744025-d24499be-c70b-4a07-8332-403ba6168401.png">  
