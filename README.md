@@ -10,7 +10,7 @@ The audience logs in on their mobile device - they authorize themselves through 
 ## Voting results
 The voting results are displayed on a projector on the main stage.
 
-<img width="90%" alt="image" src="https://user-images.githubusercontent.com/120416913/230744073-3330364e-2c74-4448-a4eb-8057e76d0a4c.png">
+<img width="80%" alt="image" src="https://user-images.githubusercontent.com/120416913/230744073-3330364e-2c74-4448-a4eb-8057e76d0a4c.png">
 
 ## Mobile view
 Each person in the audience can vote only once.
