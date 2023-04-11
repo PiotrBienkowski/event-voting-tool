@@ -1,6 +1,9 @@
 # Event Voting Tool
 A tool that allows you to vote between two people. 
 
+<img width="80%" alt="image" src="https://user-images.githubusercontent.com/120416913/231106925-80b889a7-4215-4fb3-8a16-1a9c6348f376.gif">
+
+
 ## Authorization
 The audience logs in on their mobile device - they authorize themselves through a code placed, for example, on an identifier.
 
