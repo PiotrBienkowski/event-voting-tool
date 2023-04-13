@@ -1,4 +1,13 @@
-API_link = "http://127.0.0.1:8000"
+async function config() {
+    try {
+        const response = await fetch('../config.json');
+        const data = await response.json();
+        return data["api_link"];
+    } catch (error) {
+        console.error(error);
+        return "error";
+    }
+}
 
 function logOut() {
     deleteCookie("password_hash");
@@ -50,13 +59,16 @@ function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
 
-function sendDataToAPI(tmp_data, link) {
+async function sendDataToAPI(tmp_data, link) {
     const data = tmp_data
     const options = {
         method: 'POST',
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' }
     };
+
+    API_link = await config();
+
     return fetch(API_link + link, options)
         .then(response => response.json())
         .then(data => {
@@ -75,6 +87,7 @@ async function APIHash(text) {
       },
     };
     const queryString = new URLSearchParams({ text: text }).toString();
+    API_link = await config();
     const url = `${API_link + "/hash"}?${queryString}`;
     return fetch(url, params)
       .then((response) => response.json())
