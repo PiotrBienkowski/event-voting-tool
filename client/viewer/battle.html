@@ -4,13 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCN - Bitwa</title>
+    <title>Pitch Contest Night - Bitwa</title>
     <link href="style/panel.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        #loading{
+            width: 30px;
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <img src="images/loading.gif" alt="" id="loading">
     <img id="arrow" onclick="window.location.href = 'index.html';" src="images/arrow.svg" alt="">
     <div class="box">
         <h1>Zagłosuj</h1>

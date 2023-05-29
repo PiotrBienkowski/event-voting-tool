@@ -9,6 +9,7 @@ async function auth() {
 }
 
 async function start() {
+    document.getElementById("loading").style.display = "block";
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const battleCode = urlParams.get('code');
@@ -27,9 +28,11 @@ async function start() {
 
     document.getElementById("button1").innerHTML = tmp["info"]["name1"]
     document.getElementById("button2").innerHTML = tmp["info"]["name2"]
+    document.getElementById("loading").style.display = "none";
 }
 
 async function vote(player) {
+    document.getElementById("loading").style.display = "block";
     if (player == 1 || player == 2) {
         pollerCode = getCookieValue("viewer_code");
         const queryString = window.location.search;
@@ -53,4 +56,5 @@ async function vote(player) {
             window.location.replace("index.html");
         }, 4000);
     }
+    document.getElementById("loading").style.display = "none";
 }

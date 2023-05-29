@@ -7,6 +7,7 @@ async function auth() {
 }
 
 async function login_viewer_form() {
+    document.getElementById("loading").style.display = "block";
     code = document.getElementById("code").value;
     tmp = await sendDataToAPI({code: code}, "/auth-code")
 
@@ -18,5 +19,5 @@ async function login_viewer_form() {
         document.getElementById("error").style.display = "block"
     }
 
-    console.log(tmp)
+    document.getElementById("loading").style.display = "none";
 }
