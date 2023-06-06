@@ -1,4 +1,5 @@
-getPollers()
+getPollers();
+auth();
 cnt = 0
 
 function logOutClient() {
@@ -7,6 +8,7 @@ function logOutClient() {
 }
 
 async function addPollers() {
+    document.getElementById("loading").style.display = "block";
     document.getElementById("error").innerHTML = ""
 
     codes = document.getElementById("codes").value;
@@ -27,11 +29,13 @@ async function addPollers() {
           div.appendChild(p);
         }
     }
+    document.getElementById("loading").style.display = "none";
 
     getPollers()
 }
 
 async function getPollers() {
+    document.getElementById("loading").style.display = "block";
     email = getCookieValue("email")
     password_hash = getCookieValue("password_hash")
 
@@ -46,6 +50,7 @@ async function getPollers() {
         p.textContent = tmp["tab"][i]["code"] + " - " + tmp["tab"][i]["cnt"];
         div.appendChild(p);
     }
+    document.getElementById("loading").style.display = "none";
 }
 
 function toggleMenu() {

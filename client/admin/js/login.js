@@ -7,6 +7,7 @@ async function auth() {
 }
 
 async function login_user_form() {
+    document.getElementById("loading").style.display = "block";
     email = document.getElementById("email").value;
     password = document.getElementById("password").value;
 
@@ -24,6 +25,7 @@ async function login_user_form() {
     } else {
         document.getElementById("error").style.display = "block";
     }
+    document.getElementById("loading").style.display = "none";
 }
 
 async function prepare_login_data(email, password) {

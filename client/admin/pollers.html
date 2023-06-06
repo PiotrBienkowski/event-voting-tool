@@ -9,8 +9,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        #loading{
+            width: 30px;
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <img src="images/loading.gif" alt="" id="loading">
     <img class="menuIcon" src="images/menu.png" onclick="toggleMenu()" alt="">
     <div class="box">
         <div class="controlBox" id="controlBox">

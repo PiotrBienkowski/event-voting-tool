@@ -11,11 +11,14 @@ async function auth() {
 }
 
 function logOutClient() {
+    document.getElementById("loading").style.display = "block";
     logOut();
     window.location.href = 'login.html';
+    document.getElementById("loading").style.display = "none";
 }
 
 function showDetails(code) {
+    document.getElementById("loading").style.display = "block";
     if (document.getElementById("d_" + code).style.display != "none") {
         document.getElementById("d_" + code).style.display = "none";
         document.getElementById("a_" + code).style.transform = "rotate(-90deg)"
@@ -23,9 +26,11 @@ function showDetails(code) {
         document.getElementById("d_" + code).style.display = "block";
         document.getElementById("a_" + code).style.transform = "rotate(90deg)";
     }
+    document.getElementById("loading").style.display = "none";
 }
 
 async function addBattle() {
+    document.getElementById("loading").style.display = "block";
     name1 = document.getElementById("name1").value;
     name2 = document.getElementById("name2").value;
     email = getCookieValue("email")
@@ -35,9 +40,11 @@ async function addBattle() {
     getBattles();
     document.getElementById("name1").value = ""
     document.getElementById("name2").value = ""
+    document.getElementById("loading").style.display = "none";
 }
 
 async function getBattles() {
+    document.getElementById("loading").style.display = "block";
     email = getCookieValue("email")
     password_hash = getCookieValue("password_hash")
 
@@ -62,14 +69,17 @@ async function getBattles() {
         }
     }
 
+    document.getElementById("loading").style.display = "none";
 }
 
 async function toggleStatus(code) {
+    document.getElementById("loading").style.display = "block";
     email = getCookieValue("email")
     password_hash = getCookieValue("password_hash")
     tmp = await sendDataToAPI({ uniqueID: code, email: email, password_hash: password_hash, password_hash: password_hash}, "/toggle-battle")
     await getBattles();
     showDetails(code);
+    document.getElementById("loading").style.display = "none";
 }
 
 function openBattle(code) {
@@ -77,10 +87,12 @@ function openBattle(code) {
 }
 
 function toggleMenu() {
+    document.getElementById("loading").style.display = "block";
     if (document.getElementById("controlBox").style.display == "none" || cnt == 0) {
         document.getElementById("controlBox").style.display = "block"
     } else {
         document.getElementById("controlBox").style.display = "none"
     }
     cnt += 1
+    document.getElementById("loading").style.display = "none";
 }
